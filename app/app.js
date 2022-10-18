@@ -40,7 +40,8 @@ import movieRouter from './routes/movies.route.server.js';
 import authRouter from './routes/auth.route.server.js';
 
 //import api routes
-import authApiRouter from './routes/api/auth-api.router.server.js'
+import authApiRouter from './routes/api/auth-api.router.server.js';
+import moviesApiRouter from './routes/api/movies-api.router.server.js';
 
 // Instantiate Express Application
 const app = express();
@@ -114,6 +115,7 @@ app.use('/', indexRouter);
 app.use('/', movieRouter);
 app.use('/', authRouter);
 app.use('/api/auth', authApiRouter);
+app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesApiRouter);
 
 
 export default app;
